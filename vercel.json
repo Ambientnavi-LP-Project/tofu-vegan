@@ -3,13 +3,13 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/tokyo/ginza-burger/",
+      "destination": "/tokyo/ginza-burger",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/tokyo/ginza-burger/:path*",
+      "source": "/tokyo/ginza-burger",
       "destination": "/index.html"
     }
   ],
