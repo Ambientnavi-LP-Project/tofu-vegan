@@ -1,21 +1,16 @@
 {
   "trailingSlash": true,
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/tokyo/ginza-burger",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/tokyo/ginza-burger/",
-      "destination": "/index.html"
-    }
-  ],
   "redirects": [
     {
       "source": "/",
       "destination": "/tokyo/ginza-burger/",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/tokyo/ginza-burger/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
