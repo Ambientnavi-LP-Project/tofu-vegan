@@ -282,11 +282,11 @@ img, video { display: block; max-width: 100%; height: auto; }
 
 /* ====== Hero ====== */
 .hero {
-  padding: 64px 48px 100px;
+  padding: 64px 48px 130px;
   position: relative;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 70px;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 50px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
@@ -475,10 +475,23 @@ img, video { display: block; max-width: 100%; height: auto; }
 .hero-urgency .row { display: flex; align-items: center; gap: 4px; }
 .hero-urgency strong { color: var(--ink); font-weight: 600; }
 
-/* ====== Hero video (9:16 vertical) ====== */
+/* ====== Hero video + photo composition ====== */
 .hero-visual {
   position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 620px;
+}
+
+/* Vertical video — main element */
+.hero-video-wrap {
+  position: relative;
+  width: 62%;
   aspect-ratio: 9/16;
+  max-height: 680px;
   background: var(--bg-deep);
   border-radius: 6px;
   overflow: hidden;
@@ -486,14 +499,10 @@ img, video { display: block; max-width: 100%; height: auto; }
     0 30px 60px var(--shadow-deep),
     0 8px 20px var(--shadow);
   z-index: 2;
-  max-height: 720px;
-  justify-self: center;
-  width: 100%;
-  max-width: 460px;
 }
 
-.hero-visual video,
-.hero-visual img.hero-fallback {
+.hero-video-wrap video,
+.hero-video-wrap img.hero-fallback {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -501,7 +510,7 @@ img, video { display: block; max-width: 100%; height: auto; }
 }
 
 /* Decorative frame around the video */
-.hero-visual::before {
+.hero-video-wrap::before {
   content: '';
   position: absolute;
   inset: 10px;
@@ -512,8 +521,8 @@ img, video { display: block; max-width: 100%; height: auto; }
   mix-blend-mode: overlay;
 }
 
-/* Soft top-left ornament corner */
-.hero-visual::after {
+/* Ornament corner */
+.hero-video-wrap::after {
   content: '';
   position: absolute;
   top: 18px;
@@ -527,11 +536,74 @@ img, video { display: block; max-width: 100%; height: auto; }
   pointer-events: none;
 }
 
+/* Burger photo — overlapping the video on the left */
+.hero-photo-wrap {
+  position: absolute;
+  left: -2%;
+  bottom: 8%;
+  width: 46%;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-deep);
+  box-shadow:
+    0 24px 50px var(--shadow-deep),
+    0 6px 16px var(--shadow);
+  border: 6px solid var(--paper);
+  z-index: 3;
+  transform: rotate(-2deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-photo-wrap:hover {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.hero-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 35% center;
+}
+
+/* Photo caption — like a hand-written label */
+.hero-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px 12px;
+  background: linear-gradient(to top, rgba(43, 36, 25, 0.85), rgba(43, 36, 25, 0));
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.hero-photo-eyebrow {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--accent-warm);
+  line-height: 1;
+  filter: brightness(1.4);
+}
+
+.hero-photo-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
 /* Video play state cue (sound toggle) */
 .video-controls {
   position: absolute;
   bottom: 18px;
-  left: 18px;
+  right: 18px;
   display: flex;
   gap: 8px;
   z-index: 5;
@@ -589,9 +661,8 @@ img, video { display: block; max-width: 100%; height: auto; }
 /* Hero scroll-hint */
 .scroll-hint {
   position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -28px;
+  right: 18%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -602,6 +673,7 @@ img, video { display: block; max-width: 100%; height: auto; }
   color: var(--ink-muted);
   pointer-events: none;
   animation: scrollHint 2.4s ease-in-out infinite;
+  z-index: 1;
 }
 
 .scroll-hint .line {
@@ -773,10 +845,12 @@ img, video { display: block; max-width: 100%; height: auto; }
 .tofu-intro-question {
   font-family: var(--font-hand);
   color: var(--accent-warm);
-  font-size: 1.6rem;
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
   display: inline-block;
-  transform: rotate(-1.5deg);
-  margin-bottom: 8px;
+  transform: rotate(-2deg);
+  margin-bottom: 18px;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 .tofu-intro-lead {
@@ -790,8 +864,8 @@ img, video { display: block; max-width: 100%; height: auto; }
 /* The 4 reasons grid */
 .tofu-traits {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
   margin-bottom: 70px;
 }
 
@@ -987,24 +1061,12 @@ img, video { display: block; max-width: 100%; height: auto; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 35% center;
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .featured-img:hover img {
   transform: scale(1.04);
-}
-
-.featured-tag {
-  position: absolute;
-  bottom: 24px; left: 24px;
-  background: var(--paper);
-  padding: 10px 16px;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink);
-  font-weight: 600;
-  border-radius: 1px;
 }
 
 .featured-content .number {
@@ -1701,30 +1763,30 @@ img, video { display: block; max-width: 100%; height: auto; }
   color: var(--paper);
   border: none;
   border-radius: 50%;
-  width: 84px;
-  height: 84px;
+  width: 108px;
+  height: 108px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 28px rgba(168, 57, 43, 0.45);
+  box-shadow: 0 10px 32px rgba(168, 57, 43, 0.5);
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  line-height: 1.15;
+  line-height: 1.18;
   transition: all 0.3s ease;
   text-align: center;
-  padding: 8px;
+  padding: 10px;
   animation: floatPulse 2.4s ease-in-out infinite;
 }
 
 @keyframes floatPulse {
-  0%, 100% { box-shadow: 0 8px 28px rgba(168, 57, 43, 0.45); }
-  50% { box-shadow: 0 8px 36px rgba(168, 57, 43, 0.75), 0 0 0 8px rgba(168, 57, 43, 0.1); }
+  0%, 100% { box-shadow: 0 10px 32px rgba(168, 57, 43, 0.5); }
+  50% { box-shadow: 0 10px 40px rgba(168, 57, 43, 0.8), 0 0 0 10px rgba(168, 57, 43, 0.12); }
 }
 
 .floating-reserve:hover {
@@ -1734,13 +1796,13 @@ img, video { display: block; max-width: 100%; height: auto; }
 }
 
 .floating-reserve .material-icons {
-  font-size: 22px;
-  margin-bottom: 3px;
+  font-size: 28px;
+  margin-bottom: 4px;
 }
 
 .floating-reserve .label {
-  font-size: 0.56rem;
-  letter-spacing: 0.04em;
+  font-size: 0.64rem;
+  letter-spacing: 0.05em;
 }
 
 /* ====== Mobile Bottom Bar (mobile only) ====== */
@@ -1853,27 +1915,46 @@ img, video { display: block; max-width: 100%; height: auto; }
     top: 35%;
   }
 
-  /* Reorder: video first on mobile */
+  /* Reorder: video first on mobile, then photo */
   .hero-visual {
     order: -1;
+    min-height: 0;
+    display: block;
+    position: relative;
+    padding-bottom: 22%;
+  }
+  .hero-video-wrap {
+    width: 80%;
+    margin: 0 auto;
     aspect-ratio: 9/16;
-    max-height: 75vh;
-    max-width: 100%;
+    max-height: 72vh;
     border-radius: 4px;
   }
-  .hero-hanko {
-    width: 64px;
-    height: 64px;
-    font-size: 1.2rem;
-    top: 16px;
-    right: 16px;
+  .hero-photo-wrap {
+    position: absolute;
+    left: 2%;
+    bottom: 0;
+    width: 42%;
+    aspect-ratio: 4/5;
+    border-width: 4px;
+    transform: rotate(-3deg);
   }
-  .hero-visual::after {
+  .hero-hanko {
+    width: 60px;
+    height: 60px;
+    font-size: 1.15rem;
+    top: 14px;
+    right: 14px;
+  }
+  .hero-video-wrap::after {
     width: 22px;
     height: 22px;
     top: 14px;
     left: 14px;
   }
+  .hero-photo-eyebrow { font-size: 0.95rem; }
+  .hero-photo-name { font-size: 0.92rem; }
+  .scroll-hint { display: none; }
 
   .hero-eyebrow {
     font-size: 1.2rem;
@@ -1932,18 +2013,18 @@ img, video { display: block; max-width: 100%; height: auto; }
   .tofu-intro::after { font-size: 20rem; opacity: 0.04; }
   .tofu-intro-header { margin-bottom: 50px; }
   .tofu-intro-header h2 { font-size: 1.85rem; }
-  .tofu-intro-question { font-size: 1.3rem; }
+  .tofu-intro-question { font-size: 2.6rem; margin-bottom: 14px; }
   .tofu-intro-lead { font-size: 0.98rem; }
   .tofu-traits {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 14px;
     margin-bottom: 50px;
   }
-  .tofu-trait { padding: 24px 18px; }
-  .tofu-trait .trait-kanji { font-size: 1.8rem; margin-bottom: 12px; }
-  .tofu-trait .trait-label { font-size: 0.6rem; letter-spacing: 0.2em; }
-  .tofu-trait h3 { font-size: 1.05rem; }
-  .tofu-trait p { font-size: 0.84rem; line-height: 1.55; }
+  .tofu-trait { padding: 26px 22px; }
+  .tofu-trait .trait-kanji { font-size: 2rem; margin-bottom: 14px; }
+  .tofu-trait .trait-label { font-size: 0.62rem; letter-spacing: 0.22em; }
+  .tofu-trait h3 { font-size: 1.15rem; }
+  .tofu-trait p { font-size: 0.88rem; line-height: 1.6; }
   .tofu-bridge { margin-bottom: 40px; }
   .tofu-bridge p { font-size: 1.15rem; }
   .tofu-hook { padding: 32px 22px; }
@@ -2095,26 +2176,35 @@ img, video { display: block; max-width: 100%; height: auto; }
   </div>
 
   <div class="hero-visual">
-    <video
-      id="heroVideo"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="tofu-image/5.png"
-      aria-label="Japanese tofu burger preparation in our Ginza kitchen">
-      <source src="tofu-image/tofuburger.mp4" type="video/mp4">
-      <!-- Fallback for browsers that block video -->
-    </video>
-    <img class="hero-fallback" src="tofu-image/5.png" alt="Japanese tofu burger in Ginza" style="display:none" loading="lazy">
+    <div class="hero-video-wrap">
+      <video
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="tofu-image/5.png"
+        aria-label="Japanese tofu burger preparation in our Ginza kitchen">
+        <source src="tofu-image/tofuburger.mp4" type="video/mp4">
+      </video>
+      <img class="hero-fallback" src="tofu-image/5.png" alt="Japanese tofu burger in Ginza" style="display:none" loading="lazy">
 
-    <div class="hero-hanko" aria-hidden="true">豆腐</div>
+      <div class="hero-hanko" aria-hidden="true">豆腐</div>
 
-    <div class="video-controls">
-      <button class="video-btn" id="muteBtn" type="button" aria-label="Toggle sound">
-        <span class="material-icons" id="muteIcon">volume_off</span>
-      </button>
+      <div class="video-controls">
+        <button class="video-btn" id="muteBtn" type="button" aria-label="Toggle sound">
+          <span class="material-icons" id="muteIcon">volume_off</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <img src="tofu-image/4.png" alt="Signature Japanese Tofu Burger close-up" loading="lazy">
+      <div class="hero-photo-caption">
+        <span class="hero-photo-eyebrow">our signature</span>
+        <span class="hero-photo-name">Tofu Burger</span>
+      </div>
     </div>
 
     <div class="scroll-hint" aria-hidden="true">
@@ -2128,7 +2218,7 @@ img, video { display: block; max-width: 100%; height: auto; }
 <section class="tofu-intro">
   <div class="tofu-intro-inner">
     <div class="tofu-intro-header reveal">
-      <span class="tofu-intro-question">do you know tofu? ✦</span>
+      <span class="tofu-intro-question">what is tofu? ✦</span>
       <h2>The ingredient the world<br>quietly <em>fell for.</em></h2>
       <p class="tofu-intro-lead">
         Once a humble Japanese staple, tofu is now celebrated from Brooklyn to Berlin — by chefs, athletes, and travelers alike. Plant-based, full of protein, and quietly beautiful. Here's why it earned the world's attention.
@@ -2137,27 +2227,20 @@ img, video { display: block; max-width: 100%; height: auto; }
 
     <div class="tofu-traits">
       <div class="tofu-trait reveal">
-        <span class="trait-kanji">植</span>
-        <div class="trait-label">Plant-based</div>
-        <h3>For vegans &amp; vegetarians</h3>
-        <p>100% plant protein. No animal products, no hidden ingredients — gentle on the planet, kind to the body.</p>
-      </div>
-
-      <div class="tofu-trait reveal reveal-delay-1">
         <span class="trait-kanji">健</span>
         <div class="trait-label">Healthy</div>
         <h3>Light, lean, nourishing</h3>
         <p>Rich in protein, low in saturated fat. A food that fuels the body without weighing it down.</p>
       </div>
 
-      <div class="tofu-trait reveal reveal-delay-2">
+      <div class="tofu-trait reveal reveal-delay-1">
         <span class="trait-kanji">旨</span>
         <div class="trait-label">Umami</div>
         <h3>Surprisingly delicious</h3>
         <p>Healthy doesn't have to mean dull. Tofu carries deep, silky umami — a flavor the world is still discovering.</p>
       </div>
 
-      <div class="tofu-trait reveal reveal-delay-3">
+      <div class="tofu-trait reveal reveal-delay-2">
         <span class="trait-kanji">和</span>
         <div class="trait-label">Japanese craft</div>
         <h3>Centuries of know-how</h3>
@@ -2194,7 +2277,6 @@ img, video { display: block; max-width: 100%; height: auto; }
     <div class="featured">
       <div class="featured-img reveal">
         <img src="tofu-image/4.png" alt="Japanese tofu burger signature - close-up of layers" loading="lazy">
-        <span class="featured-tag">Signature · 看板</span>
       </div>
 
       <div class="featured-content reveal reveal-delay-1">
