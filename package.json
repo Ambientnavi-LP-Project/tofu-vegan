@@ -1,0 +1,14 @@
+{
+  "name": "halal-tofu-vegan",
+  "version": "1.0.0",
+  "description": "Tofu Burger Ginza (Vegan, Halal, Gluten-Free) — multi-store LP. Domain: tofu-vegan.halal-food-wagyu.com",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve --port=8080",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
