@@ -46,3 +46,4 @@ https://tofu-vegan.halal-food-wagyu.com/tokyo/ginza-burger/?utm_source=google-ma
 ```
 https://tofu-vegan.halal-food-wagyu.com/tokyo/ginza-burger/?utm_source=google-ads-website&utm_medium=cpc&utm_campaign=store
 ```
+
