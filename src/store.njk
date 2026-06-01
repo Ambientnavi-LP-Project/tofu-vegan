@@ -426,9 +426,7 @@ img, video { display: block; max-width: 100%; height: auto; }
 
 <header class="header">
   <div class="logo">
-    <span class="logo-main">Wagyu &amp; Vegan Hamburger</span>
-    <span class="logo-sub">(Halal · Gluten-Free) Tokyo Ginza</span>
-    <span class="jp">{{ store.name_jp }}</span>
+    <span class="logo-main">{{ store.name_full_en }}</span>
   </div>
   <div class="header-actions">
     <div class="lang-switch" role="tablist" aria-label="Language">
@@ -713,7 +711,7 @@ img, video { display: block; max-width: 100%; height: auto; }
         <span class="material-icons">store</span>
         <div class="store-item-content">
           <dt>Restaurant · 店舗名</dt>
-          <dd>{{ store.name_short }} — Tokyo Ginza<br><span style="font-size:0.8rem;color:var(--ink-muted)">(Vegan, Halal-Friendly, Gluten-Free)</span></dd>
+          <dd>{{ store.name_short }}</dd>
         </div>
       </div>
 
@@ -870,7 +868,7 @@ img, video { display: block; max-width: 100%; height: auto; }
 </section>
 
 <footer class="footer">
-  © {{ store.name_short }} · {{ store.name_jp }} · Tokyo, Japan
+  © {{ store.name_short }} · Tokyo, Japan
 </footer>
 
 <div class="floating-wrap">
