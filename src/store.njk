@@ -432,7 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" data-lang="JA">日</button>
       <button type="button" data-lang="ZH">中</button>
     </div>
-    <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-reserve" data-ga-event="reserve_click" data-ga-location="header">
+    <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-reserve" data-ga-event="reserve_click">
       <span class="material-icons">event_seat</span>
       Reserve
     </a>
@@ -470,11 +470,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="hero-cta">
-      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-primary" data-ga-event="reserve_click" data-ga-location="hero">
+      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-primary" data-ga-event="reserve_click">
         <span class="material-icons" style="font-size:18px">event_seat</span>
         Reserve a Table
       </a>
-      <a href="tel:{{ store.tel_raw }}" class="btn-secondary" data-ga-event="tel_click" data-ga-location="hero">
+      <a href="tel:{{ store.tel_raw }}" class="btn-secondary" data-ga-event="tel_click">
         <span class="material-icons" style="font-size:16px">phone</span>
         Call Instead
       </a>
@@ -717,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="material-icons">event_seat</span>
         <div class="store-item-content">
           <dt>Online Reservation</dt>
-          <dd><a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" data-ga-event="reserve_click" data-ga-location="store_info">Book on TableCheck →</a></dd>
+          <dd><a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" data-ga-event="reserve_click">Book on TableCheck →</a></dd>
         </div>
       </div>
 
@@ -725,7 +725,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="material-icons">phone</span>
         <div class="store-item-content">
           <dt>Phone — Reservations welcome</dt>
-          <dd><a href="tel:{{ store.tel_raw }}" data-ga-event="tel_click" data-ga-location="store_info">{{ store.tel_display }}</a></dd>
+          <dd><a href="tel:{{ store.tel_raw }}" data-ga-event="tel_click">{{ store.tel_display }}</a></dd>
         </div>
       </div>
 
@@ -742,7 +742,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="store-item-content">
           <dt>Address · 住所</dt>
           <dd>
-            <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="directions_click" data-ga-location="store_info">
+            <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="map_click">
               {{ store.address_en }} {{ store.address_postal }}
             </a>
           </dd>
@@ -812,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="map-inner">
     <div class="map-frame reveal">
       <iframe
-        src="https://www.google.com/maps?q=Wagyu+%26+Vegan+Hamburger+Halal+Gluten+Free+Tokyo+Ginza+Restaurant&ll=35.6682549,139.7645304&z=17&output=embed"
+        src="{{ store.maps_embed }}"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         title="Map showing {{ store.name_short }} location"
@@ -820,11 +820,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="map-actions">
-      <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="directions_click" data-ga-location="map_section">
+      <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="map_click">
         <span class="material-icons">open_in_new</span>
         Open in Google Maps
       </a>
-      <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="directions_click" data-ga-location="map_section">
+      <a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="map_click">
         <span class="material-icons">directions</span>
         Get Directions
       </a>
@@ -853,11 +853,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       With only {{ store.seats }} seats, our tables can fill quickly — especially in the evening. Please call ahead and we'll hold your table for you.
     </p>
     <div class="cta-buttons">
-      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-cream" data-ga-event="reserve_click" data-ga-location="final_cta">
+      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-cream" data-ga-event="reserve_click">
         <span class="material-icons" style="font-size:18px">event_seat</span>
         Reserve a Table
       </a>
-      <a href="tel:{{ store.tel_raw }}" class="btn-outline" data-ga-event="tel_click" data-ga-location="final_cta">
+      <a href="tel:{{ store.tel_raw }}" class="btn-outline" data-ga-event="tel_click">
         <span class="material-icons" style="font-size:18px">phone</span>
         Or Call Us
       </a>
@@ -874,22 +874,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="live-dot"></span>
     <span><strong id="viewersCount">7</strong> people viewing now</span>
   </div>
-  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="floating-reserve" aria-label="Reserve a table on TableCheck" data-ga-event="reserve_click" data-ga-location="floating_fab">
+  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="floating-reserve" aria-label="Reserve a table on TableCheck" data-ga-event="reserve_click">
     <span class="material-icons">event_seat</span>
     <span class="label">Reserve<br>Table</span>
   </a>
 </div>
 
 <nav class="mobile-bar" aria-label="Quick actions">
-  <a href="tel:{{ store.tel_raw }}" class="tel" data-ga-event="tel_click" data-ga-location="mobile_bar">
+  <a href="tel:{{ store.tel_raw }}" class="tel" data-ga-event="tel_click">
     <span class="material-icons">phone</span>
     <span>Call</span>
   </a>
-  <a href="{{ store.maps_link }}" target="_blank" rel="noopener" class="map" data-ga-event="directions_click" data-ga-location="mobile_bar">
+  <a href="{{ store.maps_link }}" target="_blank" rel="noopener" class="map" data-ga-event="map_click">
     <span class="material-icons">map</span>
     <span>Map</span>
   </a>
-  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="reserve" data-ga-event="reserve_click" data-ga-location="mobile_bar">
+  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="reserve" data-ga-event="reserve_click">
     <span class="material-icons">event_seat</span>
     <span>Reserve</span>
   </a>
@@ -976,22 +976,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  /* === GA4 custom event tracking === */
-  if (typeof gtag === 'function') {
-    document.addEventListener('click', function(e){
-      var el = e.target.closest('[data-ga-event]');
-      if (!el) return;
-      var evtName = el.getAttribute('data-ga-event');
-      var location = el.getAttribute('data-ga-location') || '';
-      gtag('event', evtName, {
-        'event_category': 'engagement',
-        'event_label': location,
-        'store_name': '{{ store.slug }}',
-        'store_area': '{{ store.region }}',
-        'brand': '{{ stores.brand.brand_slug }}'
-      });
-    }, true);
-  }
+  /* === クリック計測（data-ga-event → dataLayer → GTM → GA4）===
+     計測したい要素に data-ga-event="イベント名" を付けるだけ。
+     店舗・チャネル等のパラメータはコード側で組み立てず、GTM側でURLから解決する。 */
+  window.dataLayer = window.dataLayer || [];
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-ga-event]');
+    if (!el) return;
+    window.dataLayer.push({ event: el.getAttribute('data-ga-event') });
+  }, true);
 })();
 </script>
 
