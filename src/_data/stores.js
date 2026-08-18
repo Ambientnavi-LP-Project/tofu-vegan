@@ -35,7 +35,7 @@ module.exports = {
       hours_note: "Open Daily",
       // ===== 予約・地図 =====
       reserve_system: "tablecheck",  // "tablecheck" | "form"
-      tablecheck_url: "https://www.tablecheck.com/shops/halal-wagyu-ginza-tofu-5w-tokyo/reserve",
+      tablecheck_url: "https://www.tablecheck.com/en/halal-wagyu-ginza-tofu-5w-tokyo/reserve/message",
       maps_link: "https://maps.app.goo.gl/XyVYHaEXX74ewo3f9",
       // 地図の埋め込みURL(<iframe> の src= の中身だけ)
       maps_embed: "https://www.google.com/maps?q=Wagyu+%26+Vegan+Hamburger+Halal+Gluten+Free+Tokyo+Ginza+Restaurant&ll=35.6682549,139.7645304&z=17&output=embed",
